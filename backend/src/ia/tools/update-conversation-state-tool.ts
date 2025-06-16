@@ -1,32 +1,38 @@
-import { UpdateConversationStateUseCase } from "../../domain/usecases/user-conversation-state/update-conversation-state-usecase";
+import { GetUserByIdUseCase } from "../../domain/usecases/users/get-user-by-id-usecase";
+import { UpdateUserUseCase } from "../../domain/usecases/users/update-user-usecase";
 import { LlmToolType } from "../../domain/abstract/types/llm-tool-type";
 import { LlmTool } from "../abstract/classes/llm-tool";
 import { z } from "zod";
 
 export class UpdateConversationStateTool extends LlmTool {
-  private readonly updateConversationState: UpdateConversationStateUseCase.Service;
+    protected readonly updateUserInfoUseCase: UpdateUserUseCase.Service;
+    protected readonly getUserInfoUseCase: GetUserByIdUseCase.Service;
 
-  public constructor() {
-    super();
-    this.updateConversationState = new UpdateConversationStateUseCase.Service();
-  }
+    public constructor() {
+        super();
+        this.updateUserInfoUseCase = new UpdateUserUseCase.Service();
+        this.getUserInfoUseCase = new GetUserByIdUseCase.Service();
+    }
 
-  public getInstance(): LlmToolType {
-    return {
-      callback: this.execute.bind(this),
-      name: "atualizar-estado-conversa",
-      schema: z.object({
-        user_id: z.string(),
-        status: z.string(),
-      }),
-      description:
-        'Atualiza o estado atual da conversa, podendo ser "Apresentação", "Buscando propriedades", "Propriedade comprada/alugada"',
-    };
-  }
+    public getInstance(): LlmToolType {
+        return {
+            callback: this.execute.bind(this),
+            name: "atualizar-estado-da-conversa",
+            schema: z.object({
+                id: z.string(),
+                conversation_state: z.string().optional(),
+            }),
+            description: `Atualiza o estado da conversa`,
+        };
+    }
 
-  private async execute(
-    input: typeof UpdateConversationStateUseCase.Input
-  ): Promise<string> {
-    return JSON.stringify(await this.updateConversationState.execute(input));
-  }
+    protected async execute(
+        input: typeof UpdateUserUseCase.Input
+    ): Promise<string> {
+        const response: typeof UpdateUserUseCase.Output =
+            await this.updateUserInfoUseCase.execute(
+                input as typeof UpdateUserUseCase.Input
+            );
+        return JSON.stringify(response);
+    }
 }
