@@ -7,7 +7,7 @@ import {
     ValidatorTypeEnum,
 } from "../../utils/validator-builder";
 
-export namespace GetAppointmentsByDayUseCase {
+export namespace GetNextAppointmentsByUserUseCase {
     export const Input = {
         user_id: ""
     };
