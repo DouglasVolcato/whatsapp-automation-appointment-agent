@@ -14,24 +14,33 @@ export class AppointmentRepositorty extends Repository {
         "created_at",
         "updated_at",
       ],
-      insertFields: [
-        "id",
-        "user_id",
-        "when",
-        "title",
-        "description",
-      ],
-      updateFields: [
-        "user_id",
-        "when",
-        "title",
-        "description",
-      ],
+      insertFields: ["id", "user_id", "when", "title", "description"],
+      updateFields: ["user_id", "when", "title", "description"],
     });
   }
 
   public async getManyByDay(input: { day: string }): Promise<any[]> {
     const query = `SELECT * FROM appointments WHERE when = $1;`;
+    return await this.executeSql({ query: query, params: [input.day] });
+  }
+
+  public async getAvailableHours(input: { day: string }): Promise<any[]> {
+    const query = `
+      WITH all_hours AS (
+        SELECT generate_series(
+          date_trunc('day', $1::timestamp),
+          date_trunc('day', $1::timestamp) + interval '23 hours',
+          interval '1 hour'
+        ) AS hour
+      ),
+      scheduled_hours AS (
+        SELECT date_trunc('hour', when) AS hour
+        FROM appointments
+        WHERE date_trunc('day', when) = date_trunc('day', $1::timestamp)
+      )
+      SELECT hour FROM all_hours
+      WHERE hour NOT IN (SELECT hour FROM scheduled_hours);
+    `;
     return await this.executeSql({ query: query, params: [input.day] });
   }
 
