@@ -17,11 +17,11 @@ export class CreateAppointmentTool extends LlmTool {
       name: "criar-reuniao",
       schema: z.object({
         user_id: z.string(),
-        when: z.string(),
+        date_time: z.string(),
         title: z.string(),
         description: z.string(),
       }),
-      description: `Cria uma nova reunião`,
+      description: `Cria uma nova reunião do usuário com o mestre. date_time deve ser no formato 'YYYY-MM-DD HH:mm'. Certifique-se de colocar informações sobre o usuário que agendou a reunião.`,
     };
   }
 

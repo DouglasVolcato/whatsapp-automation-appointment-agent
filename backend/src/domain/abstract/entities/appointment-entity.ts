@@ -1,7 +1,7 @@
 export type AppointmentEntity = {
   id: string
   user_id: string
-  when: string
+  date_time: string
   title: string
   description: string
   created_at: string
@@ -10,7 +10,7 @@ export type AppointmentEntity = {
 
 export type CreateAppointmentDto = {
   user_id: string
-  when: string
+  date_time: string
   title: string
   description: string
 };

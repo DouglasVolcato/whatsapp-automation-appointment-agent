@@ -18,7 +18,7 @@ export class DeleteAppointmentTool extends LlmTool {
       schema: z.object({
         appointment_id: z.string(),
       }),
-      description: `Apaga uma reunião`,
+      description: `Apaga uma reunião já agendada`,
     };
   }
 

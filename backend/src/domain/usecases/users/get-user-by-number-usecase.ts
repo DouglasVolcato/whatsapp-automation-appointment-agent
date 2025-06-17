@@ -78,6 +78,10 @@ export namespace GetUserByNumberUseCase {
             key: "phone",
             value: input.number,
           },
+          {
+            key: "conversation_state",
+            value: ConversationState.getting_info,
+          },
         ],
       });
 

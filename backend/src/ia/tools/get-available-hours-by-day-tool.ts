@@ -19,7 +19,7 @@ export class GetAvailableHoursByDayTool extends LlmTool {
       schema: z.object({
         day: z.string(),
       }),
-      description: `Busca os horários disponíveis para o dia informado`,
+      description: `Busca os horários disponíveis para o dia informado no formato 'YYYY-MM-DD'`,
     };
   }
 

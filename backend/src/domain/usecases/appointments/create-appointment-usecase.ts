@@ -11,7 +11,7 @@ import {
 export namespace CreateAppointmentUseCase {
     export const Input: CreateAppointmentDto = {
         user_id: '',
-        when: '',
+        date_time: '',
         title: '',
         description: '',
     }
@@ -21,7 +21,7 @@ export namespace CreateAppointmentUseCase {
         appointment: {
             id: '',
             user_id: '',
-            when: '',
+            date_time: '',
             title: '',
             description: '',
             created_at: '',
@@ -46,7 +46,7 @@ export namespace CreateAppointmentUseCase {
                     .setMessage("Usuário é inválida")
                     .build(),
                 new ValidatorBuilder()
-                    .setField("when")
+                    .setField("date_time")
                     .addType(ValidatorTypeEnum.REQUIRED)
                     .addType(ValidatorTypeEnum.STRING)
                     .setMessage("Data/hora é inválida")
@@ -80,8 +80,8 @@ export namespace CreateAppointmentUseCase {
                         value: input.user_id
                     },
                     {
-                        key: "when",
-                        value: input.when
+                        key: "date_time",
+                        value: input.date_time
                     },
                     {
                         key: "title",

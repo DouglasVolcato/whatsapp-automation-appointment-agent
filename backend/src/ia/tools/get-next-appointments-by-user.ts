@@ -19,7 +19,7 @@ export class GetNextAppointmentsByUserTool extends LlmTool {
       schema: z.object({
         user_id: z.string(),
       }),
-      description: `Busca as próximas reuniões do usuário`,
+      description: `Busca as próximas reuniões do usuário com o mestre`,
     };
   }
 

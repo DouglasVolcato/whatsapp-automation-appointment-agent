@@ -1,4 +1,3 @@
-import { GetUserByNumberUseCase } from "../../domain/usecases/users/get-user-by-number-usecase";
 import { LlmToolType } from "../../domain/abstract/types/llm-tool-type";
 import { LlmTool } from "../abstract/classes/llm-tool";
 import { z } from "zod";
@@ -13,11 +12,11 @@ export class GetMasterInfoTool extends LlmTool {
     };
   }
 
-  protected async execute(
-    input: typeof GetUserByNumberUseCase.Input
+  public async execute(
+    input = {}
   ): Promise<string> {
     return JSON.stringify({
-      name: "Douglas",
+      name: "Douglas Volcato",
       number: "+55 (51) 99977-2868",
       email: "douglasvolcato@gmail.com",
       linkedin: "https://www.linkedin.com/in/douglasvolcato/",

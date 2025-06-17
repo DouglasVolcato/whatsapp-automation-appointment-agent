@@ -22,7 +22,7 @@ export class UpdateConversationStateTool extends LlmTool {
                 id: z.string(),
                 conversation_state: z.string().optional(),
             }),
-            description: `Atualiza o estado da conversa`,
+            description: `Atualiza o estado da conversa. Ele pode ser "Pegando informações", "Agendando reunião" ou "Conversando"`,
         };
     }
 

@@ -20,7 +20,7 @@ EXECUTE FUNCTION updated_at_column();
 CREATE TABLE if not exists appointments (
     id varchar(255) primary key,
     user_id varchar(255),
-    when timestamp,
+    date_time timestamp,
     title text,
     description text,
     created_at timestamp default now(),

@@ -47,7 +47,7 @@ export class UpdateUserInfoTool extends LlmTool {
         what_knows: z.string().optional(),
         what_does: z.string().optional(),
       }),
-      description: `Atualiza as informações do usuário`,
+      description: `Atualiza as informações do usuário. 'relation_with_master', 'what_likes', 'what_knows' e 'what_does' são campos opcionais e livres`,
     };
   }
 
