@@ -1,3 +1,0 @@
-X criar ferramentas
--criar agente
--integrar whatsapp
