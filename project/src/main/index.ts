@@ -10,6 +10,7 @@ import { ApiRoute } from "./abstract/api-route";
 import { Env } from "./utils/env";
 import express from "express";
 import cors from "cors";
+import path from "path";
 
 const port = process.env.PORT;
 const app = express();
@@ -36,6 +37,11 @@ makeDatabaseConnection();
 makeDocumentationCreator(app, apiRoutes);
 makeMetricsObserver(app);
 whatsappInteractor.observeMessages(app, makeMessageHandler());
+
+app.use('/app', express.static(Env.APP_PATH));
+app.get('/app/*\W', (req, res) => {
+  res.sendFile(path.resolve(Env.APP_PATH, 'index.html'));
+});
 
 for (const route of apiRoutes) {
   makeExpressRoute(app, route);

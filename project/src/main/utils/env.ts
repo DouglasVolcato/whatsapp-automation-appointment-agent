@@ -19,6 +19,7 @@ export const Env = {
   USE_OPENAI: process.env.USE_OPENAI === "true",
   STATIC_FILES_PATH: path.join(__dirname, "../../../public"),
   VIEWS_PATH: path.join(__dirname, "../../../views"),
+  APP_PATH: path.join(__dirname, "../../../app/dist"),
   SERVER_DOMAIN: process.env.SERVER_DOMAIN,
   USE_WHATSAPP_API: process.env.USE_WHATSAPP_API === "true",
   WHATSAPP_API_URL: process.env.WHATSAPP_API_URL,
