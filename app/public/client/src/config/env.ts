@@ -1,4 +1,4 @@
 export const Env = {
   API_URL: "http://localhost:3000",
-  BASE_URL: "/app",
+  BASE_URL: "/client",
 };

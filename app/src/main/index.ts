@@ -38,8 +38,8 @@ makeDocumentationCreator(app, apiRoutes);
 makeMetricsObserver(app);
 whatsappInteractor.observeMessages(app, makeMessageHandler());
 
-app.use('/app', express.static(Env.APP_PATH));
-app.get('/app/*\W', (req, res) => {
+app.use('/client', express.static(Env.APP_PATH));
+app.get('/client/*\W', (req, res) => {
   res.sendFile(path.resolve(Env.APP_PATH, 'index.html'));
 });
 
@@ -50,4 +50,5 @@ for (const route of apiRoutes) {
 app.listen(port, () => {
   console.log(`Server running on ${Env.SERVER_DOMAIN}`);
   console.log(`Documentation on ${Env.SERVER_DOMAIN}/docs`);
+  console.log(`Client on ${Env.SERVER_DOMAIN}/client`);
 });
