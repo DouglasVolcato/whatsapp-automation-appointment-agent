@@ -9,10 +9,10 @@ import {
 } from "../../utils/validator-builder";
 
 export namespace LlmChatTestUseCase {
-  export const Input = ({
+  export const Input = {
     number: "",
     messages: [] as string[],
-  });
+  };
 
   export const Output = {
     response: "",

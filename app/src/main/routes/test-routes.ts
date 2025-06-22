@@ -9,7 +9,6 @@ export const TestRoutes: ApiRoute[] = [
     description: "Rota para testar o envio de mensagens para o agente de IA",
     method: "POST",
     usecase: new LlmChatTestUseCase.Service(),
-    middlewares: [],
     input: LlmChatTestUseCase.Input,
     output: LlmChatTestUseCase.Output,
     oberverMetrics: [
