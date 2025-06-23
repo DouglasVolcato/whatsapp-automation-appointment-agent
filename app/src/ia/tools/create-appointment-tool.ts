@@ -28,10 +28,13 @@ export class CreateAppointmentTool extends LlmTool {
   protected async execute(
     input: typeof CreateAppointmentUseCase.Input
   ): Promise<string> {
-    const response: typeof CreateAppointmentUseCase.Output =
+    const response: typeof CreateAppointmentUseCase.Output | Error =
       await this.createAppointmentUseCase.execute(
         input as typeof CreateAppointmentUseCase.Input
       );
+    if (response instanceof Error) {
+      return JSON.stringify({ error: response.message });
+    }
     return JSON.stringify(response);
   }
 }

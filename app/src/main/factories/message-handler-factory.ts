@@ -10,6 +10,10 @@ export function makeMessageHandler() {
   const getUserLastMessagesUseCase = new GetUserLastMessagesUseCase.Service();
   const insertUserLastMessageUseCase = new InsertUserLastMessageUseCase.Service();
 
+  function formatWhatsappMessage(content: string): string {
+    return `*Assistente*: ${content}`;
+  }
+
   async function handleMessages(input: {
     number: string;
     lastMessages: ChatMessage[];
@@ -52,7 +56,7 @@ export function makeMessageHandler() {
         lastMessages: [
           ...lastMessages,
           {
-            content: response.response,
+            content: formatWhatsappMessage(response.response),
             sender: MessageSenderEnum.ASSISTANT,
           },
         ],
@@ -62,10 +66,10 @@ export function makeMessageHandler() {
     await insertUserLastMessageUseCase.execute({
       user_id: user.id,
       sender: MessageSenderEnum.ASSISTANT,
-      content: response.response,
+      content: formatWhatsappMessage(response.response),
     });
 
-    return response.response;
+    return formatWhatsappMessage(response.response);
   }
 
   return handleMessages;
