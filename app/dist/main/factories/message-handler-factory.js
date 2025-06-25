@@ -10,6 +10,9 @@ function makeMessageHandler() {
     const getUserByNumberUseCase = new get_user_by_number_usecase_1.GetUserByNumberUseCase.Service();
     const getUserLastMessagesUseCase = new get_user_last_messages_usecase_1.GetUserLastMessagesUseCase.Service();
     const insertUserLastMessageUseCase = new insert_user_last_message_usecase_1.InsertUserLastMessageUseCase.Service();
+    function formatWhatsappMessage(content) {
+        return `*Assistente*: ${content}`;
+    }
     async function handleMessages(input) {
         const user = await getUserByNumberUseCase.execute({ number: input.number });
         for (const message of input.lastMessages) {
@@ -39,7 +42,7 @@ function makeMessageHandler() {
                 lastMessages: [
                     ...lastMessages,
                     {
-                        content: response.response,
+                        content: formatWhatsappMessage(response.response),
                         sender: llm_agent_1.MessageSenderEnum.ASSISTANT,
                     },
                 ],
@@ -48,9 +51,9 @@ function makeMessageHandler() {
         await insertUserLastMessageUseCase.execute({
             user_id: user.id,
             sender: llm_agent_1.MessageSenderEnum.ASSISTANT,
-            content: response.response,
+            content: formatWhatsappMessage(response.response),
         });
-        return response.response;
+        return formatWhatsappMessage(response.response);
     }
     return handleMessages;
 }

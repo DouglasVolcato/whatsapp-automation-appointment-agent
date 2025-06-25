@@ -38,7 +38,7 @@ class DocumentationCreator {
                         },
                     };
                 const operationObject = {
-                    summary: route.description || '',
+                    summary: route.description || "",
                     responses: {
                         200: {
                             description: "Successful Response",
@@ -76,9 +76,16 @@ class DocumentationCreator {
                         },
                     },
                 };
+                let input = route.input || {};
+                if (route.useAuthentication) {
+                    input = {
+                        ...input,
+                        token: "",
+                    };
+                }
                 if (isGetMethod) {
                     if (route.input && typeof route.input === "object") {
-                        operationObject.parameters = Object.keys(route.input).map((key) => ({
+                        operationObject.parameters = Object.keys(input).map((key) => ({
                             name: key,
                             in: "query",
                             required: false,
@@ -95,7 +102,7 @@ class DocumentationCreator {
                         content: {
                             "application/json": {
                                 schema: {
-                                    example: route.input || {},
+                                    example: input || {},
                                 },
                             },
                         },

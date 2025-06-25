@@ -24,6 +24,9 @@ class CreateAppointmentTool extends llm_tool_1.LlmTool {
     }
     async execute(input) {
         const response = await this.createAppointmentUseCase.execute(input);
+        if (response instanceof Error) {
+            return JSON.stringify({ error: response.message });
+        }
         return JSON.stringify(response);
     }
 }
