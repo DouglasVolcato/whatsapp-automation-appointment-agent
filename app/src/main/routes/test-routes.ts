@@ -15,5 +15,9 @@ export const TestRoutes: ApiRoute[] = [
       ObserverMetricsEnum.request_counter,
       ObserverMetricsEnum.llm_requests_total,
     ],
+    rateLimiterOptions: {
+      hours: 1,
+      maxRequests: 5,
+    }
   },
 ];
