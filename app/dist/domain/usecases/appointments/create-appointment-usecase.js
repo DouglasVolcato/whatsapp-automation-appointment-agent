@@ -8,22 +8,22 @@ const validator_builder_1 = require("../../utils/validator-builder");
 var CreateAppointmentUseCase;
 (function (CreateAppointmentUseCase) {
     CreateAppointmentUseCase.Input = {
-        user_id: '',
-        date_time: '',
-        title: '',
-        description: '',
+        user_id: "",
+        date_time: "",
+        title: "",
+        description: "",
     };
     CreateAppointmentUseCase.Output = {
         message: "",
         appointment: {
-            id: '',
-            user_id: '',
-            date_time: '',
-            title: '',
-            description: '',
-            created_at: '',
-            updated_at: '',
-        }
+            id: "",
+            user_id: "",
+            date_time: "",
+            title: "",
+            description: "",
+            created_at: "",
+            updated_at: "",
+        },
     };
     class Service extends usecase_1.UseCase {
         constructor() {
@@ -60,39 +60,48 @@ var CreateAppointmentUseCase;
         }
         async handle(input) {
             const id = uuid_generator_1.UuidGenerator.generate();
+            const isHouravailable = await this.appointmentsRepositorty.checkIfDatetimeIsAvailable({
+                date_time: input.date_time,
+            });
+            if (!isHouravailable.is_available) {
+                return new Error("Hora indisponível");
+            }
             await this.appointmentsRepositorty.insert({
                 fields: [
                     {
                         key: "id",
-                        value: id
+                        value: id,
                     },
                     {
                         key: "user_id",
-                        value: input.user_id
+                        value: input.user_id,
                     },
                     {
                         key: "date_time",
-                        value: input.date_time
+                        value: input.date_time,
                     },
                     {
                         key: "title",
-                        value: input.title
+                        value: input.title,
                     },
                     {
                         key: "description",
-                        value: input.description
-                    }
-                ]
+                        value: input.description,
+                    },
+                ],
             });
             const appointment = await this.appointmentsRepositorty.findOne({
                 params: [
                     {
                         key: "id",
-                        value: id
-                    }
-                ]
+                        value: id,
+                    },
+                ],
             });
-            return { message: "Reunião criada com sucesso", appointment: appointment };
+            return {
+                message: "Reunião criada com sucesso",
+                appointment: appointment,
+            };
         }
     }
     CreateAppointmentUseCase.Service = Service;

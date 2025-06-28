@@ -7,10 +7,10 @@ const usecase_1 = require("../../abstract/classes/usecase");
 const validator_builder_1 = require("../../utils/validator-builder");
 var LlmChatTestUseCase;
 (function (LlmChatTestUseCase) {
-    LlmChatTestUseCase.Input = ({
+    LlmChatTestUseCase.Input = {
         number: "",
         messages: [],
-    });
+    };
     LlmChatTestUseCase.Output = {
         response: "",
     };

@@ -19,7 +19,9 @@ class GetMasterInfoTool extends llm_tool_1.LlmTool {
             email: "douglasvolcato@gmail.com",
             linkedin: "https://www.linkedin.com/in/douglasvolcato/",
             github: "https://github.com/DouglasVolcato",
+            instagram: "https://www.instagram.com/douglasvolcato/",
             profession: "Desenvolvedor Full Stack",
+            busy_hours: "De segunda a sexta das 7h a 19:30h",
             habilities: [
                 `Desenvolvimento de sistemas web`,
                 `Desenvolvimento de sistemas mobile`,
@@ -32,6 +34,17 @@ class GetMasterInfoTool extends llm_tool_1.LlmTool {
                 `Manutenção de sistemas legados`,
                 `Deploy de aplicações`,
             ],
+            hobbies: [
+                `Desenvolvimento de sistemas`,
+                `Solução de problemas`,
+                `Empreendedorismo`,
+                `Investimentos`,
+                `Cripto moedas`,
+                `Tecnologia`,
+                `Esportes`,
+                `Xadrez`,
+                `Jogos RPG`,
+            ]
         });
     }
 }
