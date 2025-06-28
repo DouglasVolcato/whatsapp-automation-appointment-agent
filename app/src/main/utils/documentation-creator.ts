@@ -5,9 +5,20 @@ import { Env } from "./env";
 
 export class DocumentationCreator {
   private app: any;
+  private appName: string;
+  private appDescription: string;
+  private appVersion: string;
 
-  constructor(app: any) {
-    this.app = app;
+  constructor(input: {
+    app: any,
+    appName: string,
+    appDescription: string,
+    appVersion: string
+  }) {
+    this.app = input.app;
+    this.appName = input.appName;
+    this.appDescription = input.appDescription;
+    this.appVersion = input.appVersion;
   }
 
   public addDocumentation(routes: ApiRoute[]) {
@@ -29,19 +40,19 @@ export class DocumentationCreator {
 
         const returnContent = route.templatePath
           ? {
-              "text/html": {
-                schema: {
-                  example: "<html></html>",
-                },
+            "text/html": {
+              schema: {
+                example: "<html></html>",
               },
-            }
+            },
+          }
           : {
-              "application/json": {
-                schema: {
-                  example: route.output || {},
-                },
+            "application/json": {
+              schema: {
+                example: route.output || {},
               },
-            };
+            },
+          };
 
         const operationObject: any = {
           summary: route.description || "",
@@ -123,9 +134,9 @@ export class DocumentationCreator {
       return {
         openapi: "3.0.0",
         info: {
-          title: "Dynamic API Documentation",
-          version: "1.0.0",
-          description: "Generated automatically from route definitions.",
+          title: this.appName,
+          version: this.appVersion,
+          description: this.appDescription,
         },
         servers: [
           {

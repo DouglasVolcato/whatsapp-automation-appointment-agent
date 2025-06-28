@@ -38,7 +38,12 @@ cronJobManager.addJob({
 });
 
 makeDatabaseConnection();
-makeDocumentationCreator(app, apiRoutes);
+makeDocumentationCreator({
+  app: app,
+  appName: (`${Env.APP_NAME} API`).trim(),
+  appDescription: Env.APP_DESCRIPTION,
+  appVersion: '1.0.0'
+}, apiRoutes);
 makeMetricsObserver(app);
 whatsappInteractor.observeMessages(app, makeMessageHandler());
 
