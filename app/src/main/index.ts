@@ -4,6 +4,7 @@ import { makeMetricsObserver } from "./factories/metrics-observer-factory";
 import { WhatsappInteractor } from "../domain/utils/whatsapp-interactor";
 import { makeMessageHandler } from "./factories/message-handler-factory";
 import { makeExpressRoute } from "./factories/express-route-factory";
+import { DashboardRoutes } from "./routes/dashboard-routes";
 import { CronJobManager } from "./utils/cronjob-manager";
 import { UserRoutes } from "./routes/user-routes";
 import { TestRoutes } from "./routes/test-routes";
@@ -20,6 +21,7 @@ const apiRoutes: ApiRoute[] = [
   ...TestRoutes,
   ...UserRoutes,
   ...AuthRoutes,
+  ...DashboardRoutes,
 ];
 const cronJobManager = new CronJobManager();
 const whatsappInteractor = new WhatsappInteractor();
