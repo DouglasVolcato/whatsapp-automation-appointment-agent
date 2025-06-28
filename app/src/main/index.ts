@@ -7,6 +7,7 @@ import { makeExpressRoute } from "./factories/express-route-factory";
 import { CronJobManager } from "./utils/cronjob-manager";
 import { UserRoutes } from "./routes/user-routes";
 import { TestRoutes } from "./routes/test-routes";
+import { AuthRoutes } from "./routes/auth-routes";
 import { ApiRoute } from "./abstract/api-route";
 import { Env } from "./utils/env";
 import express from "express";
@@ -18,6 +19,7 @@ const app = express();
 const apiRoutes: ApiRoute[] = [
   ...TestRoutes,
   ...UserRoutes,
+  ...AuthRoutes,
 ];
 const cronJobManager = new CronJobManager();
 const whatsappInteractor = new WhatsappInteractor();
