@@ -81,10 +81,10 @@ export abstract class Repository {
   }
 
   public async findMany(input: {
-    params: InputField[];
-    likeParams?: InputField[];
     limit: number;
     offset: number;
+    params?: InputField[];
+    likeParams?: InputField[];
     orderByAsc?: boolean;
   }): Promise<any[]> {
     const fields = this.publicFields.join(",");
@@ -93,9 +93,11 @@ export abstract class Repository {
 
     let placeholderIndex = 1;
 
-    for (const param of input.params) {
-      whereConditions.push(`${param.key} = $${placeholderIndex++}`);
-      values.push(param.value);
+    if (input.params) {
+      for (const param of input.params) {
+        whereConditions.push(`${param.key} = $${placeholderIndex++}`);
+        values.push(param.value);
+      }
     }
 
     if (input.likeParams) {

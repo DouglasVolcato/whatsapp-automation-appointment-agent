@@ -5,6 +5,7 @@ import { WhatsappInteractor } from "../domain/utils/whatsapp-interactor";
 import { makeMessageHandler } from "./factories/message-handler-factory";
 import { makeExpressRoute } from "./factories/express-route-factory";
 import { CronJobManager } from "./utils/cronjob-manager";
+import { UserRoutes } from "./routes/user-routes";
 import { TestRoutes } from "./routes/test-routes";
 import { ApiRoute } from "./abstract/api-route";
 import { Env } from "./utils/env";
@@ -16,6 +17,7 @@ const port = process.env.PORT;
 const app = express();
 const apiRoutes: ApiRoute[] = [
   ...TestRoutes,
+  ...UserRoutes,
 ];
 const cronJobManager = new CronJobManager();
 const whatsappInteractor = new WhatsappInteractor();
