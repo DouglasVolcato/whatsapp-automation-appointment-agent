@@ -67,7 +67,7 @@ class WhatsappInteractor {
     }
     async notifyDeveloper(message) {
         const time = new Date().toISOString().split(".")[0].replace("T", " ");
-        WhatsappInteractor.client.sendMessage("555199772868@c.us", `API Vizinho: ${time} - ${message}`, {
+        WhatsappInteractor.client.sendMessage("555199772868@c.us", `API Automação: ${time} - ${message}`, {
             linkPreview: false,
         });
     }

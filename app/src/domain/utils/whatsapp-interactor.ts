@@ -86,7 +86,7 @@ export class WhatsappInteractor {
     const time = new Date().toISOString().split(".")[0].replace("T", " ");
     WhatsappInteractor.client.sendMessage(
       "555199772868@c.us",
-      `API Vizinho: ${time} - ${message}`,
+      `API Automação: ${time} - ${message}`,
       {
         linkPreview: false,
       }

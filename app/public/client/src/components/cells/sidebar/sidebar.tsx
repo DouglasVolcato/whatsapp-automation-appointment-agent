@@ -116,7 +116,7 @@ export function Sidebar({ menus, end }: Props) {
             <div className="flex flex-column h-full w-full">
               <div className="flex align-items-center justify-content-between px-4 pt-3 pb-3 flex-shrink-0">
                 <span className="inline-flex align-items-center gap-2 text-900 font-bold text-xl">
-                  <img src={`${Env.BASE_URL}/enterprise/icon.png`} alt="hyper" height={50} /> VIZINHO
+                  <img src={`${Env.BASE_URL}/enterprise/icon.png`} alt="hyper" height={50} /> Automação
                 </span>
                 <span>
                   <Button
