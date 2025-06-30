@@ -12,6 +12,12 @@ export default function SessionSidebar() {
           show: true,
         },
         {
+          label: "Usuários",
+          path: "/session/users",
+          icon: IconEnum.users,
+          show: true,
+        },
+        {
           label: "Chat",
           path: "/session/chat",
           icon: IconEnum.send,
