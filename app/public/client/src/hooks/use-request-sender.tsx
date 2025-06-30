@@ -30,6 +30,7 @@ export const useRequestSender = () => {
         alert({ type: "success", title: "Sucesso", message: data.message });
       }
     } catch(e) {
+      console.error(e);
       alert({ type: "error", title: "Erro desconhecido", message: "Tente novamente mais tarde" });
     }
     return data;

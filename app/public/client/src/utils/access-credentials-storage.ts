@@ -1,8 +1,5 @@
-import { AccessTypeEnum } from "@/abstract/enums/access-type-enum";
-
 export type AccessCredentialsType = {
     token: string;
-    access_type: AccessTypeEnum;
 }
 
 export class AccessCredentialsStorage {
@@ -15,7 +12,6 @@ export class AccessCredentialsStorage {
         if (!credentials) {
             return {
                 token: "",
-                access_type: AccessTypeEnum.none,
             }
         }
         return JSON.parse(credentials) as AccessCredentialsType;

@@ -19,12 +19,12 @@ export default function LlmChat() {
 
 
     function getOrGenerateAndStoreNumber() {
-        const storedNumber = localStorage.getItem('vizinhoNumber');
+        const storedNumber = localStorage.getItem('myNumber');
         if (storedNumber) {
             return storedNumber;
         } else {
             const newNumber = Math.floor(Math.random() * 10000000000).toString();
-            localStorage.setItem('vizinhoNumber', newNumber);
+            localStorage.setItem('myNumber', newNumber);
             return newNumber;
         }
     }
@@ -61,7 +61,7 @@ export default function LlmChat() {
         setInputMessage('');
 
         const data = await post(
-            `${Env.API_URL}/test/send-message`,
+            `${Env.API_URL}/ai/send-message`,
             { number, messages: messageHistoryRef.current },
             {
                 token: AccessCredentialsStorage.get().token
@@ -81,7 +81,7 @@ export default function LlmChat() {
     return (
         <FloatDiv fitContent removePadding>
             <div className="chat-container">
-                <div className="chat-header">Chat Vizinho</div>
+                <div className="chat-header">Chat</div>
                 <div className="chat-messages" id="chatMessages">
                     {chatMessages.map((msg, idx) => (
                         <div

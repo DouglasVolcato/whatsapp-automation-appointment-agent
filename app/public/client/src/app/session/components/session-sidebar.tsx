@@ -1,10 +1,7 @@
-import { AccessCredentialsStorage } from "@/utils/access-credentials-storage";
-import { AccessTypeEnum } from "@/abstract/enums/access-type-enum";
 import { Sidebar } from "@/components/cells/sidebar/sidebar";
 import { IconEnum } from "@/enums/icon-enum";
 
 export default function SessionSidebar() {
-  const accessCredentials = AccessCredentialsStorage.get();
   return (
     <Sidebar
       menus={[
@@ -12,25 +9,13 @@ export default function SessionSidebar() {
           label: "Dashboard geral",
           path: "/session/general-dashboard",
           icon: IconEnum.chart_line,
-          show: accessCredentials.access_type === AccessTypeEnum.admin,
-        },
-        {
-          label: "Dashboard da imobiliária",
-          path: "/session/agency-dashboard",
-          icon: IconEnum.chart_line,
-          show: accessCredentials.access_type === AccessTypeEnum.agency,
-        },
-        {
-          label: "Credenciais de acesso",
-          path: "/session/access-credentials",
-          icon: IconEnum.lock,
-          show: accessCredentials.access_type === AccessTypeEnum.admin,
+          show: true,
         },
         {
           label: "Chat",
           path: "/session/chat",
           icon: IconEnum.send,
-          show: accessCredentials.access_type === AccessTypeEnum.admin,
+          show: true,
         },
         {
           label: "Logout",

@@ -2,7 +2,6 @@ import { AccessCredentialsStorage, AccessCredentialsType } from "@/utils/access-
 import { FloatDiv } from "@/components/atoms/floating-div/floating-div";
 import { ValidationEnum } from "@/components/cells/form/validate-value";
 import { FieldSizeEnum, Form } from "@/components/cells/form/form";
-import { AccessTypeEnum } from "@/abstract/enums/access-type-enum";
 import { useRequestSender } from "@/hooks/use-request-sender";
 import { IconEnum } from "@/enums/icon-enum";
 import { useNavigate } from "react-router";
@@ -26,19 +25,11 @@ export default function LoginPage() {
             },
             {}
           ).then((data: AccessCredentialsType) => {
-            if (data && 'token' in data && 'access_type' in data) {
+            if (data && 'token' in data) {
               AccessCredentialsStorage.set({
                 token: data.token,
-                access_type: data.access_type,
               });
-              switch (data.access_type) {
-                case AccessTypeEnum.admin:
-                  navigate("/session/general-dashboard");
-                  break;
-                case AccessTypeEnum.agency:
-                  navigate("/session/agency-dashboard");
-                  break;
-              }
+              navigate("/session/general-dashboard");
             }
           });
         }}
