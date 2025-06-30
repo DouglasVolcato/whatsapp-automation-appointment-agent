@@ -9,8 +9,11 @@ const metrics_observer_factory_1 = require("./factories/metrics-observer-factory
 const whatsapp_interactor_1 = require("../domain/utils/whatsapp-interactor");
 const message_handler_factory_1 = require("./factories/message-handler-factory");
 const express_route_factory_1 = require("./factories/express-route-factory");
+const dashboard_routes_1 = require("./routes/dashboard-routes");
 const cronjob_manager_1 = require("./utils/cronjob-manager");
-const test_routes_1 = require("./routes/test-routes");
+const user_routes_1 = require("./routes/user-routes");
+const auth_routes_1 = require("./routes/auth-routes");
+const ai_routes_1 = require("./routes/ai-routes");
 const env_1 = require("./utils/env");
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
@@ -18,7 +21,10 @@ const path_1 = __importDefault(require("path"));
 const port = process.env.PORT;
 const app = (0, express_1.default)();
 const apiRoutes = [
-    ...test_routes_1.TestRoutes,
+    ...ai_routes_1.AiRoutes,
+    ...user_routes_1.UserRoutes,
+    ...auth_routes_1.AuthRoutes,
+    ...dashboard_routes_1.DashboardRoutes,
 ];
 const cronJobManager = new cronjob_manager_1.CronJobManager();
 const whatsappInteractor = new whatsapp_interactor_1.WhatsappInteractor();
@@ -34,7 +40,12 @@ cronJobManager.addJob({
     },
 });
 (0, database_connection_factory_1.makeDatabaseConnection)();
-(0, documentation_creator_factory_1.makeDocumentationCreator)(app, apiRoutes);
+(0, documentation_creator_factory_1.makeDocumentationCreator)({
+    app: app,
+    appName: (`${env_1.Env.APP_NAME} API`).trim(),
+    appDescription: env_1.Env.APP_DESCRIPTION,
+    appVersion: '1.0.0'
+}, apiRoutes);
 (0, metrics_observer_factory_1.makeMetricsObserver)(app);
 whatsappInteractor.observeMessages(app, (0, message_handler_factory_1.makeMessageHandler)());
 app.use('/client', express_1.default.static(env_1.Env.APP_PATH));

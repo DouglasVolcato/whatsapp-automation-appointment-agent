@@ -65,9 +65,11 @@ class Repository {
         const whereConditions = [];
         const values = [];
         let placeholderIndex = 1;
-        for (const param of input.params) {
-            whereConditions.push(`${param.key} = $${placeholderIndex++}`);
-            values.push(param.value);
+        if (input.params) {
+            for (const param of input.params) {
+                whereConditions.push(`${param.key} = $${placeholderIndex++}`);
+                values.push(param.value);
+            }
         }
         if (input.likeParams) {
             for (const param of input.likeParams) {

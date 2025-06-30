@@ -7,8 +7,11 @@ exports.DocumentationCreator = void 0;
 const swagger_ui_express_1 = __importDefault(require("swagger-ui-express"));
 const env_1 = require("./env");
 class DocumentationCreator {
-    constructor(app) {
-        this.app = app;
+    constructor(input) {
+        this.app = input.app;
+        this.appName = input.appName;
+        this.appDescription = input.appDescription;
+        this.appVersion = input.appVersion;
     }
     addDocumentation(routes) {
         const generateOpenApiSpec = () => {
@@ -19,6 +22,7 @@ class DocumentationCreator {
                     paths[route.path] = {};
                 }
                 const isGetMethod = route.method === "GET";
+                const isDeleteMethod = route.method === "DELETE";
                 const errorOutput = {
                     error: "message",
                 };
@@ -83,7 +87,7 @@ class DocumentationCreator {
                         token: "",
                     };
                 }
-                if (isGetMethod) {
+                if (isGetMethod || isDeleteMethod) {
                     if (route.input && typeof route.input === "object") {
                         operationObject.parameters = Object.keys(input).map((key) => ({
                             name: key,
@@ -113,9 +117,9 @@ class DocumentationCreator {
             return {
                 openapi: "3.0.0",
                 info: {
-                    title: "Dynamic API Documentation",
-                    version: "1.0.0",
-                    description: "Generated automatically from route definitions.",
+                    title: this.appName,
+                    version: this.appVersion,
+                    description: this.appDescription,
                 },
                 servers: [
                     {
