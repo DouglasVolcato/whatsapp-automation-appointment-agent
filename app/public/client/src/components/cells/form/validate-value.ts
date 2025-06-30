@@ -20,22 +20,22 @@ export const validateValue = (value: any, validations: ValidationType[]) => {
         }
         break;
       case ValidationEnum.email:
-        if (!value.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+        if (value && !value.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
           return validation.message;
         }
         break;
       case ValidationEnum.number:
-        if (!value.match(/^\d+$/)) {
+        if (value && !value.match(/^\d+$/)) {
           return validation.message;
         }
         break;
       case ValidationEnum.minLength5:
-        if (value.length < 5) {
+        if (value && value.length < 5) {
           return validation.message;
         }
         break;
       case ValidationEnum.maxLength100:
-        if (value.length > 100) {
+        if (value && value.length > 100) {
           return validation.message;
         }
         break;
