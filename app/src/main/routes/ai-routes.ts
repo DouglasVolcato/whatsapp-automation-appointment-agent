@@ -2,9 +2,9 @@ import { LlmChatTestUseCase } from "../../domain/usecases/chat/llm-chat-test-use
 import { ObserverMetricsEnum } from "../utils/metrics-observer";
 import { ApiRoute } from "../abstract/api-route";
 
-export const TestRoutes: ApiRoute[] = [
+export const AiRoutes: ApiRoute[] = [
   {
-    path: "/test/send-message",
+    path: "/ai/send-message",
     title: "Testar envio de mensagem",
     description: "Rota para testar o envio de mensagens para o agente de IA",
     method: "POST",

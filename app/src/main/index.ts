@@ -7,9 +7,9 @@ import { makeExpressRoute } from "./factories/express-route-factory";
 import { DashboardRoutes } from "./routes/dashboard-routes";
 import { CronJobManager } from "./utils/cronjob-manager";
 import { UserRoutes } from "./routes/user-routes";
-import { TestRoutes } from "./routes/test-routes";
 import { AuthRoutes } from "./routes/auth-routes";
 import { ApiRoute } from "./abstract/api-route";
+import { AiRoutes } from "./routes/ai-routes";
 import { Env } from "./utils/env";
 import express from "express";
 import cors from "cors";
@@ -18,7 +18,7 @@ import path from "path";
 const port = process.env.PORT;
 const app = express();
 const apiRoutes: ApiRoute[] = [
-  ...TestRoutes,
+  ...AiRoutes,
   ...UserRoutes,
   ...AuthRoutes,
   ...DashboardRoutes,
