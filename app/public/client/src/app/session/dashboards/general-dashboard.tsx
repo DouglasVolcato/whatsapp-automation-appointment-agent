@@ -29,7 +29,7 @@ type DefaultValueType = {
 
 export default function GeneralDashboardPage() {
   const { startLoading, stopLoading } = useLoading();
-  const { get } = useRequestSender();
+  const { get_request } = useRequestSender();
   const { API_URL } = Env;
 
   const [data, setData] = useState<DefaultValueType>({
@@ -45,7 +45,7 @@ export default function GeneralDashboardPage() {
   const fetchData = async () => {
     try {
       startLoading();
-      const response = await get(`${API_URL}/dashboard/get-data`, {
+      const response = await get_request(`${API_URL}/dashboard/get-data`, {
         token: AccessCredentialsStorage.get().token
       });
       setData(response);

@@ -37,7 +37,7 @@ export const useRequestSender = () => {
   };
 
   return {
-    get: async (url: string, headers: any) => {
+    get_request: async (url: string, headers: any) => {
       try {
         const response = await axios.get(url, { headers, validateStatus: () => true, });
         return decorator(response.data, response.status);
@@ -50,7 +50,7 @@ export const useRequestSender = () => {
       }
     },
 
-    post: async (url: string, data: any, headers: any) => {
+    post_request: async (url: string, data: any, headers: any) => {
       try {
         const response = await axios.post(url, data, { headers, validateStatus: () => true, });
         return decorator(response.data, response.status);
@@ -63,7 +63,7 @@ export const useRequestSender = () => {
       }
     },
 
-    put: async (url: string, data: any, headers: any) => {
+    put_request: async (url: string, data: any, headers: any) => {
       try {
         const response = await axios.put(url, data, { headers, validateStatus: () => true, });
         return decorator(response.data, response.status);
@@ -76,7 +76,7 @@ export const useRequestSender = () => {
       }
     },
 
-    delete: async (url: string, headers: any) => {
+    delete_request: async (url: string, headers: any) => {
       try {
         const response = await axios.delete(url, { headers, validateStatus: () => true, });
         return decorator(response.data, response.status);
@@ -89,7 +89,7 @@ export const useRequestSender = () => {
       }
     },
 
-    patch: async (url: string, data: any, headers: any) => {
+    patch_request: async (url: string, data: any, headers: any) => {
       try {
         const response = await axios.patch(url, data, { headers, validateStatus: () => true, });
         return decorator(response.data, response.status);

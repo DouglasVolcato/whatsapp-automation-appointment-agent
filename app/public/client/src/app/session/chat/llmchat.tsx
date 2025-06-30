@@ -6,7 +6,7 @@ import { Env } from '@/config/env';
 import './styles.css';
 
 export default function LlmChat() {
-    const { post } = useRequestSender();
+    const { post_request } = useRequestSender();
     const [inputMessage, setInputMessage] = useState('');
     const [chatMessages, setChatMessages] = useState<{ isUser: boolean, content: string }[]>([]);
     const messageHistoryRef = useRef<string[]>([]);
@@ -60,7 +60,7 @@ export default function LlmChat() {
         messageHistoryRef.current.push(userMessage);
         setInputMessage('');
 
-        const data = await post(
+        const data = await post_request(
             `${Env.API_URL}/ai/send-message`,
             { number, messages: messageHistoryRef.current },
             {

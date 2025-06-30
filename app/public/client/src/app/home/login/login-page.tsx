@@ -9,7 +9,7 @@ import { Env } from "@/config/env";
 
 export default function LoginPage() {
   const navigate = useNavigate();
-  const { post } = useRequestSender();
+  const { post_request } = useRequestSender();
   const { API_URL } = Env;
 
   return (
@@ -17,7 +17,7 @@ export default function LoginPage() {
       <Form
         title="Área do Administrador"
         onSubmit={async (data: any) => {
-          await post(
+          await post_request(
             `${API_URL}/auth/login`,
             {
               email: data.email.trim(),
