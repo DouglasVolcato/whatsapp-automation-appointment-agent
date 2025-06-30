@@ -33,6 +33,7 @@ export class DocumentationCreator {
         }
 
         const isGetMethod = route.method === "GET";
+        const isDeleteMethod = route.method === "DELETE";
 
         const errorOutput = {
           error: "message",
@@ -103,7 +104,7 @@ export class DocumentationCreator {
           };
         }
 
-        if (isGetMethod) {
+        if (isGetMethod || isDeleteMethod) {
           if (route.input && typeof route.input === "object") {
             operationObject.parameters = Object.keys(input).map((key) => ({
               name: key,

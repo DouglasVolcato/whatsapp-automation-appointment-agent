@@ -1,3 +1,4 @@
+import { UserLastMessagesRepositorty } from "../../../infra/repositories/user-last-messages-repository";
 import { ValidatorBuilder, ValidatorTypeEnum } from "../../utils/validator-builder";
 import { ValidatorInterface } from "../../abstract/interfaces/validator-interface";
 import { ConversationState } from "../../abstract/enums/conversation-state-enum";
@@ -29,13 +30,6 @@ export namespace ManageUsersUseCase {
     };
     export const DeleteInput = {
         id: "",
-        name: "",
-        email: "",
-        phone: "",
-        relation_with_master: "",
-        what_likes: "",
-        what_knows: "",
-        what_does: "",
     };
     export const GetOneInput = {
         id: "",
@@ -169,10 +163,12 @@ export namespace ManageUsersUseCase {
     }
 
     export class DeleteService extends UseCase {
+        private readonly userLastMesages: UserLastMessagesRepositorty;
         private readonly usersRepository: UsersRepositorty;
 
         public constructor() {
             super();
+            this.userLastMesages = new UserLastMessagesRepositorty();
             this.usersRepository = new UsersRepositorty();
         }
 
@@ -188,6 +184,12 @@ export namespace ManageUsersUseCase {
         }
 
         public async handle(input: typeof DeleteInput): Promise<typeof DeleteOutput | Error> {
+            await this.userLastMesages.delete({params: [
+                {
+                    key: "user_id",
+                    value: input.id
+                }
+            ]});
             await this.usersRepository.delete({
                 params: [{
                     key: "id",
