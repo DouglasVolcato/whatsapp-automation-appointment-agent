@@ -9,7 +9,7 @@ exports.AiRoutes = [
         title: "Testar envio de mensagem",
         description: "Rota para testar o envio de mensagens para o agente de IA",
         method: "POST",
-        usecase: new llm_chat_test_usecase_1.LlmChatTestUseCase.Service(),
+        usecase: () => new llm_chat_test_usecase_1.LlmChatTestUseCase.Service(),
         input: llm_chat_test_usecase_1.LlmChatTestUseCase.Input,
         output: llm_chat_test_usecase_1.LlmChatTestUseCase.Output,
         oberverMetrics: [

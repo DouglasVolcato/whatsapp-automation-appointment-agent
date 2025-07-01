@@ -9,11 +9,11 @@ export const UserRoutes: ApiRoute[] = [
     title: "Cria um usuário",
     description: "Rota para criar um usuário",
     method: "POST",
-    usecase: new ManageUsersUseCase.CreateService(),
+    usecase: () => new ManageUsersUseCase.CreateService(),
     input: ManageUsersUseCase.CreateInput,
     output: ManageUsersUseCase.CreateOutput,
     useAuthentication: true,
-    middlewares: [new AuthMiddleware()],
+    middlewares: [() => new AuthMiddleware()],
     oberverMetrics: [
       ObserverMetricsEnum.request_counter
     ],
@@ -23,11 +23,11 @@ export const UserRoutes: ApiRoute[] = [
     title: "Atualiza um usuário",
     description: "Rota para atualizar um usuário",
     method: "PATCH",
-    usecase: new ManageUsersUseCase.UpdateService(),
+    usecase: () => new ManageUsersUseCase.UpdateService(),
     input: ManageUsersUseCase.UpdateInput,
     output: ManageUsersUseCase.UpdateOutput,
     useAuthentication: true,
-    middlewares: [new AuthMiddleware()],
+    middlewares: [() => new AuthMiddleware()],
     oberverMetrics: [
       ObserverMetricsEnum.request_counter
     ],
@@ -37,11 +37,11 @@ export const UserRoutes: ApiRoute[] = [
     title: "Remove um usuário",
     description: "Rota para remover um usuário",
     method: "DELETE",
-    usecase: new ManageUsersUseCase.DeleteService(),
+    usecase: () => new ManageUsersUseCase.DeleteService(),
     input: ManageUsersUseCase.DeleteInput,
     output: ManageUsersUseCase.DeleteOutput,
     useAuthentication: true,
-    middlewares: [new AuthMiddleware()],
+    middlewares: [() => new AuthMiddleware()],
     oberverMetrics: [
       ObserverMetricsEnum.request_counter
     ],
@@ -51,11 +51,11 @@ export const UserRoutes: ApiRoute[] = [
     title: "Busca um usuário",
     description: "Rota para buscar um usuário",
     method: "GET",
-    usecase: new ManageUsersUseCase.GetOneService(),
+    usecase: () => new ManageUsersUseCase.GetOneService(),
     input: ManageUsersUseCase.GetOneInput,
     output: ManageUsersUseCase.GetOneOutput,
     useAuthentication: true,
-    middlewares: [new AuthMiddleware()],
+    middlewares: [() => new AuthMiddleware()],
     oberverMetrics: [
       ObserverMetricsEnum.request_counter
     ],
@@ -65,11 +65,11 @@ export const UserRoutes: ApiRoute[] = [
     title: "Lista os usuários",
     description: "Rota para listar os usuários",
     method: "GET",
-    usecase: new ManageUsersUseCase.GetManyService(),
+    usecase: () => new ManageUsersUseCase.GetManyService(),
     input: ManageUsersUseCase.GetManyInput,
     output: ManageUsersUseCase.GetManyOutput,
     useAuthentication: true,
-    middlewares: [new AuthMiddleware()],
+    middlewares: [() => new AuthMiddleware()],
     oberverMetrics: [
       ObserverMetricsEnum.request_counter
     ],

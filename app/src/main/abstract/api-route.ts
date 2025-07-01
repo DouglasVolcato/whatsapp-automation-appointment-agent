@@ -10,8 +10,8 @@ export type ApiRoute = {
   path: string;
   method: ApiRouteMethod;
   useAuthentication?: boolean;
-  usecase?: UseCase;
-  middlewares?: Middleware[];
+  usecase?: () => UseCase;
+  middlewares?: (() => Middleware)[];
   input?: any;
   output?: any;
   templatePath?: string;

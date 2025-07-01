@@ -41,7 +41,7 @@ export class ExpressRoute {
 
       if (this.route.middlewares) {
         for (const middleware of this.route.middlewares) {
-          input = await middleware.execute(input);
+          input = await (middleware()).execute(input);
           if (input instanceof Error) {
             Logger.apiResponse({
               response: {
@@ -64,7 +64,7 @@ export class ExpressRoute {
       }
 
       if (this.route.usecase) {
-        const controller = makeController(this.route.usecase);
+        const controller = makeController((this.route.usecase()));
         response = await controller.execute(input);
 
         Logger.apiResponse({

@@ -9,12 +9,12 @@ export const DashboardRoutes: ApiRoute[] = [
     title: "Buscar dados",
     description: "Rota para buscar dados do dashboard",
     method: "GET",
-    usecase: new GetDashboardDataUseCase.Service(),
+    usecase: () => new GetDashboardDataUseCase.Service(),
     input: GetDashboardDataUseCase.Input,
     output: GetDashboardDataUseCase.Output,
     useAuthentication: true,
     middlewares: [
-        new AuthMiddleware(),
+      () => new AuthMiddleware(),
     ],
     oberverMetrics: [
       ObserverMetricsEnum.request_counter,

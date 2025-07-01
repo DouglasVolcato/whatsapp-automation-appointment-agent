@@ -10,12 +10,12 @@ exports.DashboardRoutes = [
         title: "Buscar dados",
         description: "Rota para buscar dados do dashboard",
         method: "GET",
-        usecase: new get_dashboard_data_usecase_1.GetDashboardDataUseCase.Service(),
+        usecase: () => new get_dashboard_data_usecase_1.GetDashboardDataUseCase.Service(),
         input: get_dashboard_data_usecase_1.GetDashboardDataUseCase.Input,
         output: get_dashboard_data_usecase_1.GetDashboardDataUseCase.Output,
         useAuthentication: true,
         middlewares: [
-            new auth_middleware_1.AuthMiddleware(),
+            () => new auth_middleware_1.AuthMiddleware(),
         ],
         oberverMetrics: [
             metrics_observer_1.ObserverMetricsEnum.request_counter,

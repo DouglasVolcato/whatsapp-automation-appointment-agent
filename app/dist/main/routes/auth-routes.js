@@ -9,7 +9,7 @@ exports.AuthRoutes = [
         title: "Login",
         description: "Rota para realizar login e obter token de acesso",
         method: "POST",
-        usecase: new make_login_usecase_1.MakeLoginUseCase.Service(),
+        usecase: () => new make_login_usecase_1.MakeLoginUseCase.Service(),
         input: make_login_usecase_1.MakeLoginUseCase.Input,
         output: make_login_usecase_1.MakeLoginUseCase.Output,
         oberverMetrics: [

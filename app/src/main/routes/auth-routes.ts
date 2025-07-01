@@ -8,7 +8,7 @@ export const AuthRoutes: ApiRoute[] = [
     title: "Login",
     description: "Rota para realizar login e obter token de acesso",
     method: "POST",
-    usecase: new MakeLoginUseCase.Service(),
+    usecase: () => new MakeLoginUseCase.Service(),
     input: MakeLoginUseCase.Input,
     output: MakeLoginUseCase.Output,
     oberverMetrics: [
