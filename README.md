@@ -116,6 +116,11 @@ app
 * **bcryptjs**: password hashing
 * **jsonwebtoken**: token-based authentication
 
+### 🛡️ Security
+
+* **helmet**: security headers
+* **express-rate-limit**: rate limiting
+
 ### 🧾 Documentation
 
 * **Swagger**: API documentation
